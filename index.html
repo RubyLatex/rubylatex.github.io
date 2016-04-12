@@ -1,0 +1,367 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <title>API Reference</title>
+
+    <style>
+      .highlight table td { padding: 5px; }
+.highlight table pre { margin: 0; }
+.highlight, .highlight .w {
+  color: #f8f8f2;
+  background-color: #272822;
+}
+.highlight .err {
+  color: #151515;
+  background-color: #ac4142;
+}
+.highlight .c, .highlight .cd, .highlight .cm, .highlight .c1, .highlight .cs {
+  color: #505050;
+}
+.highlight .cp {
+  color: #f4bf75;
+}
+.highlight .nt {
+  color: #f4bf75;
+}
+.highlight .o, .highlight .ow {
+  color: #d0d0d0;
+}
+.highlight .p, .highlight .pi {
+  color: #d0d0d0;
+}
+.highlight .gi {
+  color: #90a959;
+}
+.highlight .gd {
+  color: #ac4142;
+}
+.highlight .gh {
+  color: #6a9fb5;
+  background-color: #151515;
+  font-weight: bold;
+}
+.highlight .k, .highlight .kn, .highlight .kp, .highlight .kr, .highlight .kv {
+  color: #aa759f;
+}
+.highlight .kc {
+  color: #d28445;
+}
+.highlight .kt {
+  color: #d28445;
+}
+.highlight .kd {
+  color: #d28445;
+}
+.highlight .s, .highlight .sb, .highlight .sc, .highlight .sd, .highlight .s2, .highlight .sh, .highlight .sx, .highlight .s1 {
+  color: #90a959;
+}
+.highlight .sr {
+  color: #75b5aa;
+}
+.highlight .si {
+  color: #8f5536;
+}
+.highlight .se {
+  color: #8f5536;
+}
+.highlight .nn {
+  color: #f4bf75;
+}
+.highlight .nc {
+  color: #f4bf75;
+}
+.highlight .no {
+  color: #f4bf75;
+}
+.highlight .na {
+  color: #6a9fb5;
+}
+.highlight .m, .highlight .mf, .highlight .mh, .highlight .mi, .highlight .il, .highlight .mo, .highlight .mb, .highlight .mx {
+  color: #90a959;
+}
+.highlight .ss {
+  color: #90a959;
+}
+    </style>
+    <link href="stylesheets/screen.css" rel="stylesheet" media="screen" />
+    <link href="stylesheets/print.css" rel="stylesheet" media="print" />
+      <script src="javascripts/all.js"></script>
+  </head>
+
+  <body class="index" data-languages="[]">
+    <a href="#" id="nav-button">
+      <span>
+        NAV
+        <img src="images/navbar.png" />
+      </span>
+    </a>
+    <div class="tocify-wrapper">
+      <img src="images/logo.png" />
+        <div class="lang-selector">
+        </div>
+        <div class="search">
+          <input type="text" class="search" id="input-search" placeholder="Search">
+        </div>
+        <ul class="search-results"></ul>
+      <div id="toc">
+      </div>
+        <ul class="toc-footer">
+            <li><a href='https://github.com/RubyLatex'>Hosted on Github</a></li>
+            <li><a href='https://github.com/tripit/slate'>Documentation Powered by Slate</a></li>
+        </ul>
+    </div>
+    <div class="page-wrapper">
+      <div class="dark-box"></div>
+      <div class="content">
+        <h1 id="introduction">Introduction</h1>
+
+<p>This is the official RbTeX documentation. The documentation here includes the useage of RbTeX, both
+for LaTeX and for Ruby, and other information regarding RubyLatex.  </p>
+
+<h1 id="installing">Installing</h1>
+
+<p>RubyLatex was build on OS X 10.11 (El Capitan), and as such is configured for that environment. The
+install script included in the install directory will (probably) work for Linux as well as OS X, but
+definitely will not work for Windows. Simply run <code class="prettyprint">sudo ./osx_texlive</code> and watch the magic happen.</p>
+
+<h1 id="latex">LaTeX</h1>
+
+<p>On the LaTeX side, you simply need to include the rubylatex package. The package includes several
+commands discussed in this section.</p>
+
+<blockquote>
+<p>You can include the rubylatex package like this</p>
+</blockquote>
+<pre class="highlight tex"><code><span class="k">\documentclass</span><span class="p">{</span>myclass<span class="p">}</span>
+<span class="k">\usepackage</span><span class="p">{</span>rubylatex<span class="p">}</span>
+
+<span class="nt">\begin{document}</span>
+<span class="c">% content here</span>
+<span class="nt">\end{document}</span>
+</code></pre>
+
+<h2 id="rbtex">RbTeX</h2>
+
+<p><code class="prettyprint">\RbTeX</code> is a fancy command that displays the RbTeX logo. It must be used in math mode.</p>
+
+<blockquote>
+<p>Let&rsquo;s produce the pretty logo in the top left corner of this page</p>
+</blockquote>
+<pre class="highlight tex"><code><span class="k">\documentclass</span><span class="p">{</span>myclass<span class="p">}</span>
+<span class="k">\usepackage</span><span class="p">{</span>rubylatex<span class="p">}</span>
+
+<span class="nt">\begin{document}</span>
+Hi! I'm using the <span class="p">$</span><span class="nv">\RbTeX</span><span class="p">$</span> package.
+<span class="nt">\end{document}</span>
+</code></pre>
+
+<h2 id="rbtex">rbtex</h2>
+
+<p><code class="prettyprint">rbtex</code> is the default environemnt for injecting Ruby code. Anything inside the <code class="prettyprint">rbtex</code> environemnt
+needs the be ruby code. For example, using <code class="prettyprint">%</code> to comment items inside the <code class="prettyprint">rbtex</code> will not work;
+you must use a <code class="prettyprint">#</code> instead.</p>
+
+<blockquote>
+<p>Ruby commands are the only things allowed in the <code class="prettyprint">rbtex</code> environement</p>
+</blockquote>
+<pre class="highlight tex"><code><span class="k">\documentclass</span><span class="p">{</span>myclass<span class="p">}</span>
+<span class="k">\usepackage</span><span class="p">{</span>rubylatex<span class="p">}</span>
+
+<span class="nt">\begin{document}</span>
+
+<span class="c">% out here, use LaTeX supported commands</span>
+<span class="nt">\begin{rbtex}</span>
+# in here, use Ruby supported commands
+puts 'hello, world'
+<span class="nt">\end{rbtex}</span>
+<span class="nt">\end{document}</span>
+</code></pre>
+
+<h2 id="frbtex">frbtex</h2>
+
+<aside class='warning'>THIS IS NOT YET IMPLEMENTED</aside>
+
+<p><code class="prettyprint">frbtex</code> provides an interface with which to include an entire external file. The file will be copied
+verbatim, so there is no need to <code class="prettyprint">require &#39;rbtex&#39;</code> in the supplied script.</p>
+
+<blockquote>
+<p>Don&rsquo;t use this, yo.</p>
+</blockquote>
+<pre class="highlight tex"><code><span class="k">\documentclass</span><span class="p">{</span>myclass<span class="p">}</span>
+<span class="k">\usepackage</span><span class="p">{</span>rubylatex<span class="p">}</span>
+
+<span class="nt">\begin{document}</span>
+<span class="k">\frbtex</span><span class="p">{</span>myfile.rb<span class="p">}</span>
+
+<span class="nt">\begin{rbtex}</span>
+myFunctionDefinedInMyFileDotRb
+<span class="nt">\end{rbtex}</span>
+<span class="nt">\end{document}</span>
+</code></pre>
+
+<h1 id="tex">Tex</h1>
+
+<p>The <code class="prettyprint">Tex</code> module contains tools to generate LaTeX output from ruby.</p>
+
+<h2 id="tex-print-arg0">Tex.print(arg0)</h2>
+
+<p>This command prints <code class="prettyprint">arg0</code> to the LaTeX document.</p>
+
+<h3 id="arguments">Arguments</h3>
+
+<ul>
+<li><code class="prettyprint">arg0</code>: The string to be printed out</li>
+</ul>
+
+<blockquote>
+<p>Print a string to the TeX document</p>
+</blockquote>
+<pre class="highlight tex"><code><span class="k">\documentclass</span><span class="p">{</span>myclass<span class="p">}</span>
+<span class="k">\usepackage</span><span class="p">{</span>rubylatex<span class="p">}</span>
+
+<span class="nt">\begin{document}</span>
+
+<span class="nt">\begin{rbtex}</span>
+
+Tex.print("Hello, world from Ruby!")
+
+<span class="nt">\end{rbtex}</span>
+<span class="nt">\end{document}</span>
+</code></pre>
+
+<h2 id="tex-cmath-arg0">Tex.cmath(arg0)</h2>
+
+<p>Wraps <code class="prettyprint">arg0</code> in a centered equation environemnt</p>
+
+<h3 id="arguments">Arguments</h3>
+
+<ul>
+<li><code class="prettyprint">arg0</code>: The string to be wrapped by <code class="prettyprint">\[</code> and <code class="prettyprint">\]</code></li>
+</ul>
+
+<h3 id="returns">Returns</h3>
+
+<ul>
+<li>A string representing the term <code class="prettyprint">\[arg0\]</code></li>
+</ul>
+
+<blockquote>
+<p>Centering an equation is easy</p>
+</blockquote>
+<pre class="highlight tex"><code><span class="k">\documentclass</span><span class="p">{</span>myclass<span class="p">}</span>
+<span class="k">\usepackage</span><span class="p">{</span>rubylatex<span class="p">}</span>
+
+<span class="nt">\begin{document}</span>
+
+<span class="nt">\begin{rbtex}</span>
+
+myfx = "f(x)"
+Tex.print Tex.cmath(myfx)
+
+<span class="nt">\end{rbtex}</span>
+<span class="nt">\end{document}</span>
+</code></pre>
+
+<h2 id="tex-imath-arg0">Tex.imath(arg0)</h2>
+
+<p>Wraps <code class="prettyprint">arg0</code> in an inline math mode environemnt</p>
+
+<h3 id="arguments">Arguments</h3>
+
+<ul>
+<li><code class="prettyprint">arg0</code>: The string to be wrapped by <code class="prettyprint">$</code> and <code class="prettyprint">$</code></li>
+</ul>
+
+<h3 id="returns">Returns</h3>
+
+<ul>
+<li>A string representing the term <code class="prettyprint">$arg0$</code></li>
+</ul>
+
+<blockquote>
+<p>x squared is not actually my favorite function</p>
+</blockquote>
+<pre class="highlight tex"><code><span class="k">\documentclass</span><span class="p">{</span>myclass<span class="p">}</span>
+<span class="k">\usepackage</span><span class="p">{</span>rubylatex<span class="p">}</span>
+
+<span class="nt">\begin{document}</span>
+
+<span class="nt">\begin{rbtex}</span>
+
+myfx = "f(x) = x<span class="p">^{</span>2<span class="p">}</span>"
+Tex.print "#<span class="p">{</span>Tex.imath(myfx)<span class="p">}</span> is my favorite function."
+
+<span class="nt">\end{rbtex}</span>
+<span class="nt">\end{document}</span>
+</code></pre>
+
+<h2 id="tex-center-arg0">Tex.center(arg0)</h2>
+
+<p>Wraps <code class="prettyprint">arg0</code> in an center environment.</p>
+
+<h3 id="arguments">Arguments</h3>
+
+<ul>
+<li><code class="prettyprint">arg0</code>: The string to be wrapped by <code class="prettyprint">\begin{center}</code> and <code class="prettyprint">\end{center}</code></li>
+</ul>
+
+<h3 id="returns">Returns</h3>
+
+<ul>
+<li>A string representing the term <code class="prettyprint">\begin{center}arg0\end{center}</code>
+&gt; Use this to center non-math environements</li>
+</ul>
+<pre class="highlight tex"><code><span class="k">\documentclass</span><span class="p">{</span>myclass<span class="p">}</span>
+<span class="k">\usepackage</span><span class="p">{</span>rubylatex<span class="p">}</span>
+
+<span class="nt">\begin{document}</span>
+
+<span class="nt">\begin{rbtex}</span>
+
+Tex.print Tex.center("This is important!")
+
+<span class="nt">\end{rbtex}</span>
+<span class="nt">\end{document}</span>
+</code></pre>
+
+<h2 id="table">Table</h2>
+
+<p>The <code class="prettyprint">Tex</code> module provides a simple way to create a generic table.</p>
+
+<h3 id="minimal-working-example">Minimal Working Example</h3>
+
+<p>This example provides a simple use case for generating a table. The <code class="prettyprint">rubylatex</code> package by default
+formats this to be a <code class="prettyprint">tabularx</code> environment with all columns set to <code class="prettyprint">|X|</code>.</p>
+<pre class="highlight tex"><code><span class="k">\documentclass</span><span class="p">{</span>myclass<span class="p">}</span>
+<span class="k">\usepackage</span><span class="p">{</span>rubylatex<span class="p">}</span>
+
+<span class="nt">\begin{document}</span>
+
+<span class="nt">\begin{rbtex}</span>
+
+array = [
+    ["Header 01","Header 02","Header 03"],
+    ["Content 01","Content 01","Content 01"],
+    ["Content 02","Content 02","Content 02"]
+]
+
+myTable = Tex::Table.new array
+content = myTable.create
+Tex.print(content)
+
+<span class="nt">\end{rbtex}</span>
+
+<span class="nt">\end{document}</span>
+</code></pre>
+
+      </div>
+      <div class="dark-box">
+          <div class="lang-selector">
+          </div>
+      </div>
+    </div>
+  </body>
+</html>
